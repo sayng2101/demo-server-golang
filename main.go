@@ -2,9 +2,8 @@ package main
 
 import (
 	"fmt"
-	ginitem "github.com/server/modules/items/transport/gin"
-
 	"github.com/gin-gonic/gin"
+	ginitem "github.com/server/modules/items/transport/gin"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
@@ -23,8 +22,8 @@ func main() {
 	r := gin.Default()
 	// r.MaxMultipartMemory = 8 << 20
 	r.POST("/create", ginitem.CreaterItem(db))
-	//r.GET("/:title", db.GetItemById(condb))
-	//r.GET("/", db.GetAllItems(condb))
+	r.GET("/:id", ginitem.GetItemById(db))
+	r.GET("/", ginitem.ListItem(db))
 	//r.PATCH("/:id", db.ItemUpdateById(condb))
 	//r.DELETE("delete/:id", db.DeleteItemById(condb))
 	r.Run(":8080").Error()
