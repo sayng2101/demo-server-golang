@@ -2,8 +2,9 @@ package main
 
 import (
 	"fmt"
+
 	"github.com/gin-gonic/gin"
-	ginitem "github.com/server/modules/items/transport/gin"
+	transport2 "github.com/server/modules/v1/users/transport"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
@@ -18,13 +19,24 @@ func main() {
 	if db != nil {
 		fmt.Println("Ket noi thanh cong")
 	}
-
 	r := gin.Default()
-	// r.MaxMultipartMemory = 8 << 20
-	r.POST("/create", ginitem.CreaterItem(db))
-	r.GET("/:id", ginitem.GetItemById(db))
-	r.GET("/", ginitem.ListItem(db))
-	//r.PATCH("/:id", db.ItemUpdateById(condb))
-	//r.DELETE("delete/:id", db.DeleteItemById(condb))
-	r.Run(":8080").Error()
+
+	r.SetTrustedProxies([]string{"127.0.0.1"})
+	r.MaxMultipartMemory = 8 << 20
+	v1 := r.Group("/v1")
+
+	//quiz app
+	{
+		user := v1.Group("/user")
+		{
+			user.POST("/create", transport2.CreateUser(db))
+			user.POST("/login", transport2.LoginUser(db))
+		}
+	}
+
+	//item
+	//r.Static("/file", "")
+
+	r.Run(":8080")
+
 }

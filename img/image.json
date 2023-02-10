@@ -1,0 +1,15 @@
+
+[
+  {
+    "title": "Anh 1",
+    "thumbnail": "http://localhost:8080/file/img/image1.png",
+    "color": "0xFF808AFF",
+    "titleColor": "0xFFFFFFFF"
+  },
+  {
+    "title": "Anh 2",
+    "thumbnail": "http://localhost:8080/file/img/image1.png",
+    "color": "0xFF808AFF",
+    "titleColor": "0xFFFFFFFF"
+  }
+]
