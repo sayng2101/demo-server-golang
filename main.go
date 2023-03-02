@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-
 	"github.com/gin-gonic/gin"
+
 	transport2 "github.com/server/modules/v1/users/transport"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -31,6 +31,8 @@ func main() {
 		{
 			user.POST("/create", transport2.CreateUser(db))
 			user.POST("/login", transport2.LoginUser(db))
+			user.PUT("/update/:id", transport2.UpdateByIdUser(db))
+			user.GET("/:id", transport2.GetByIdUser(db))
 		}
 	}
 
