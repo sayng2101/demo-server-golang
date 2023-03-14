@@ -32,7 +32,12 @@ func main() {
 			user.POST("/create", transport2.CreateUser(db))
 			user.POST("/login", transport2.LoginUser(db))
 			user.PUT("/update/:id", transport2.UpdateByIdUser(db))
+			user.PUT("/score/:id", transport2.UpdateScoreByIdUser(db))
 			user.GET("/:id", transport2.GetByIdUser(db))
+		}
+		quiz := v1.Group("/quiz")
+		{
+			quiz.POST("/", transport2.GetQuiz(db))
 		}
 	}
 

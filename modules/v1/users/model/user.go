@@ -38,6 +38,7 @@ type UserResponse struct {
 	Password string     `json:"-" `
 	Hoten    string     `json:"hoten"`
 	Avatar   string     `json:"avatar,omitempty"`
+	Score    int        `json:"score"`
 	CreateAt *time.Time `json:"create_at"`
 	UpdateAt *time.Time `json:"update_at,omitempty"`
 }
@@ -51,3 +52,9 @@ type UpdateUser struct {
 }
 
 func (UpdateUser) TableName() string { return User{}.TableName() }
+
+type UpdateScoreUser struct {
+	Score int `json:"score" gorm:"column:score"`
+}
+
+func (UpdateScoreUser) TableName() string { return User{}.TableName() }
