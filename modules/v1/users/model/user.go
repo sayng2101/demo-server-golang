@@ -8,6 +8,8 @@ type User struct {
 	Password string     `json:"password" gorm:"column:password;"`
 	Hoten    string     `json:"hoten" gorm:"column:hoten;"`
 	Avatar   string     `json:"avatar" gorm:"column:avatar;"`
+	Age      string     `json:"age" gorm:"column:age"`
+	Score    int        `json:"score" gorm:"column:score"`
 	CreateAt *time.Time `json:"create_at" gorm:"column:create_at;"`
 	UpdateAt *time.Time `json:"update_at,omitempty" gorm:"column:update_at;"`
 }
@@ -39,6 +41,7 @@ type UserResponse struct {
 	Hoten    string     `json:"hoten"`
 	Avatar   string     `json:"avatar,omitempty"`
 	Score    int        `json:"score"`
+	Age      string     `json:"age"`
 	CreateAt *time.Time `json:"create_at"`
 	UpdateAt *time.Time `json:"update_at,omitempty"`
 }
@@ -47,7 +50,9 @@ func (UserResponse) TableName() string { return User{}.TableName() }
 
 type UpdateUser struct {
 	//Password string `json:"password" gorm:"column:password;"`
-	Hoten string `json:"hoten" gorm:"column:hoten;"`
+	Hoten    string `json:"hoten" gorm:"column:hoten;"`
+	Age      string `json:"age" gorm:"column:age;"`
+	Password string `json:"password" gorm:"column:password;"`
 	//Avatar string `json:"avatar" gorm:"column:avatar;"`
 }
 

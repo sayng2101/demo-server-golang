@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
-
 	transport2 "github.com/server/modules/v1/users/transport"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -23,6 +22,7 @@ func main() {
 
 	r.SetTrustedProxies([]string{"127.0.0.1"})
 	r.MaxMultipartMemory = 8 << 20
+
 	v1 := r.Group("/v1")
 
 	//quiz app
@@ -34,6 +34,7 @@ func main() {
 			user.PUT("/update/:id", transport2.UpdateByIdUser(db))
 			user.PUT("/score/:id", transport2.UpdateScoreByIdUser(db))
 			user.GET("/:id", transport2.GetByIdUser(db))
+			user.GET("/", transport2.GetUsers(db))
 		}
 		quiz := v1.Group("/quiz")
 		{
@@ -42,8 +43,12 @@ func main() {
 	}
 
 	//item
-	//r.Static("/file", "")
-
+	//r.Static("/file", "./static")
+	//r.POST("/file/send", func(c *gin.Context) {
+	//	var data *model.CreateQuiz
+	//	c.ShouldBind(&data)
+	//	c.String(http.StatusOK, "%s , %s, %s ,%s, %s", data.Question, data.Op1, data.Op2, data.Op3, data.Op4)
+	//})
 	r.Run(":8080")
 
 }
