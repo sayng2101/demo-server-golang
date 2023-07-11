@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+
 	"github.com/gin-gonic/gin"
 	transport2 "github.com/server/modules/v1/users/transport"
 	"gorm.io/driver/mysql"
@@ -9,7 +10,7 @@ import (
 )
 
 func main() {
-	dns := "root:1234@tcp(127.0.0.1:3306)/todo?charset=utf8mb4&parseTime=True&loc=Local"
+	dns := "root:123456@tcp(127.0.0.1:3306)/todo?charset=utf8mb4&parseTime=True&loc=Local"
 	db, err := gorm.Open(mysql.Open(dns), &gorm.Config{})
 	if err != nil {
 		fmt.Println(err)
